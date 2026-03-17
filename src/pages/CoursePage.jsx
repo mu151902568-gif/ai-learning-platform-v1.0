@@ -141,6 +141,28 @@ const CoursePage = () => {
         { id: 8, title: '运营工具使用', type: 'document', duration: '60分钟', completed: false, content: '学习常用运营工具的使用方法' },
         { id: 9, title: '运营知识考核', type: 'exam', duration: '45分钟', completed: false }
       ]
+    },
+    // 新人入职必修课
+    {
+      id: 7,
+      title: '新人入职必修课',
+      type: 'mixed',
+      instructor: '综合讲师',
+      duration: '12小时',
+      progress: 0,
+      category: '入职培训',
+      level: '初级',
+      description: '新员工入职必须完成的课程，涵盖企业文化、考勤规则、产品知识等核心内容。',
+      lessons: [
+        { id: 1, title: '公司简介与企业文化', type: 'video', duration: '60分钟', completed: false, videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4' },
+        { id: 2, title: '考勤规则与请假流程', type: 'document', duration: '45分钟', completed: false, content: '详细介绍公司的考勤制度、请假流程和相关规定' },
+        { id: 3, title: '产品知识基础', type: 'video', duration: '60分钟', completed: false, videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4' },
+        { id: 4, title: '运营通用知识', type: 'document', duration: '60分钟', completed: false, content: '运营相关的基础知识和技能' },
+        { id: 5, title: '四柱八字基础', type: 'video', duration: '90分钟', completed: false, videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4' },
+        { id: 6, title: '奇门遁甲入门', type: 'video', duration: '90分钟', completed: false, videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4' },
+        { id: 7, title: '入职综合练习', type: 'exercise', duration: '90分钟', completed: false },
+        { id: 8, title: '入职考核', type: 'exam', duration: '60分钟', completed: false }
+      ]
     }
   ]);
 
