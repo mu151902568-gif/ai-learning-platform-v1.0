@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Card, Row, Col, Tabs, Button, Progress, Badge, Tag, Modal, Space } from 'antd';
-import { PlayCircleOutlined, FileTextOutlined, CheckCircleOutlined, BookOutlined, VideoCameraOutlined, CheckOutlined } from '@ant-design/icons';
+import { Card, Row, Col, Tabs, Button, Progress, Badge, Tag, Modal, Space, Input, message } from 'antd';
+import { PlayCircleOutlined, FileTextOutlined, CheckCircleOutlined, BookOutlined, VideoCameraOutlined, CheckOutlined, ImportOutlined } from '@ant-design/icons';
 import './CoursePage.css';
 
 const { TabPane } = Tabs;
@@ -10,6 +10,8 @@ const CoursePage = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [currentLesson, setCurrentLesson] = useState(null);
   const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
+  const [isImportModalVisible, setIsImportModalVisible] = useState(false);
+  const [obsidianKey, setObsidianKey] = useState('0bc1fd393cb3d00b4c84206b4b4752adb37f67f0e96452fc34d54cc6d4a62a80');
   const [courses, setCourses] = useState([
     // 企业文化板块
     {
@@ -203,6 +205,39 @@ const CoursePage = () => {
     }
   };
 
+  // 导入Obsidian内容
+  const handleImportObsidian = () => {
+    try {
+      // 这里模拟从Obsidian导入内容
+      // 实际项目中，你需要使用Obsidian API和提供的密钥
+      message.success('成功从Obsidian导入内容！');
+      
+      // 模拟导入的内容
+      const importedContent = {
+        id: 8,
+        title: 'Obsidian导入课程',
+        type: 'mixed',
+        instructor: 'Obsidian',
+        duration: '4小时',
+        progress: 0,
+        category: '导入课程',
+        level: '初级',
+        description: '从Obsidian导入的课程内容',
+        lessons: [
+          { id: 1, title: 'Obsidian笔记1', type: 'document', duration: '30分钟', completed: false, content: '这是从Obsidian导入的笔记内容1' },
+          { id: 2, title: 'Obsidian笔记2', type: 'document', duration: '30分钟', completed: false, content: '这是从Obsidian导入的笔记内容2' },
+          { id: 3, title: 'Obsidian笔记3', type: 'document', duration: '30分钟', completed: false, content: '这是从Obsidian导入的笔记内容3' }
+        ]
+      };
+      
+      // 添加到课程列表
+      setCourses(prevCourses => [...prevCourses, importedContent]);
+      setIsImportModalVisible(false);
+    } catch (error) {
+      message.error('导入Obsidian内容失败，请检查密钥是否正确');
+    }
+  };
+
   const filteredCourses = courses.filter(course => {
     if (activeTab === 'all') return true;
     if (activeTab === 'in-progress') return course.progress > 0 && course.progress < 100;
@@ -233,7 +268,16 @@ const CoursePage = () => {
 
   return (
     <div className="course-page">
-      <h1>课程学习</h1>
+      <div className="page-header">
+        <h1>课程学习</h1>
+        <Button 
+          type="primary" 
+          icon={<ImportOutlined />} 
+          onClick={() => setIsImportModalVisible(true)}
+        >
+          导入Obsidian内容
+        </Button>
+      </div>
       
       <Tabs activeKey={activeTab} onChange={setActiveTab} className="course-tabs">
         <TabPane tab="全部课程" key="all" />
@@ -343,6 +387,33 @@ const CoursePage = () => {
             <p><strong>类型：</strong>{currentLesson?.type === 'video' ? '视频课程' : currentLesson?.type === 'document' ? '图文教程' : '互动练习'}</p>
             <p><strong>时长：</strong>{currentLesson?.duration}</p>
           </div>
+        </div>
+      </Modal>
+
+      {/* Obsidian导入模态框 */}
+      <Modal
+        title="导入Obsidian内容"
+        open={isImportModalVisible}
+        onCancel={() => setIsImportModalVisible(false)}
+        footer={[
+          <Button key="cancel" onClick={() => setIsImportModalVisible(false)}>
+            取消
+          </Button>,
+          <Button key="import" type="primary" onClick={handleImportObsidian}>
+            导入
+          </Button>
+        ]}
+        width={600}
+      >
+        <div className="import-form">
+          <p>请输入Obsidian密钥，系统将自动导入相关内容</p>
+          <Input
+            placeholder="输入Obsidian密钥"
+            value={obsidianKey}
+            onChange={e => setObsidianKey(e.target.value)}
+            style={{ margin: '16px 0' }}
+          />
+          <p>导入后，Obsidian中的内容将以新课程的形式添加到平台中</p>
         </div>
       </Modal>
     </div>
