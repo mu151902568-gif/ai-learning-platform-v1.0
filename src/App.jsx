@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { Layout, Menu, Button, Badge, Drawer, List, Avatar, Space } from 'antd';
-import { BookOutlined, FileTextOutlined, UserOutlined, MenuOutlined } from '@ant-design/icons';
+import { BookOutlined, FileTextOutlined, UserOutlined, MenuOutlined, MessageOutlined } from '@ant-design/icons';
 import CoursePage from './pages/CoursePage';
 import ExamPage from './pages/ExamPage';
 import './App.css';

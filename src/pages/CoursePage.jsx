@@ -208,33 +208,70 @@ const CoursePage = () => {
   // 导入Obsidian内容
   const handleImportObsidian = () => {
     try {
-      // 这里模拟从Obsidian导入内容
-      // 实际项目中，你需要使用Obsidian API和提供的密钥
-      message.success('成功从Obsidian导入内容！');
+      // 这里实现从Obsidian导入内容的功能
+      // 由于浏览器安全限制，我们需要用户手动选择Obsidian Vault目录
       
-      // 模拟导入的内容
-      const importedContent = {
-        id: 8,
-        title: 'Obsidian导入课程',
-        type: 'mixed',
-        instructor: 'Obsidian',
-        duration: '4小时',
-        progress: 0,
-        category: '导入课程',
-        level: '初级',
-        description: '从Obsidian导入的课程内容',
-        lessons: [
-          { id: 1, title: 'Obsidian笔记1', type: 'document', duration: '30分钟', completed: false, content: '这是从Obsidian导入的笔记内容1' },
-          { id: 2, title: 'Obsidian笔记2', type: 'document', duration: '30分钟', completed: false, content: '这是从Obsidian导入的笔记内容2' },
-          { id: 3, title: 'Obsidian笔记3', type: 'document', duration: '30分钟', completed: false, content: '这是从Obsidian导入的笔记内容3' }
-        ]
+      // 创建文件选择器
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.webkitdirectory = true;
+      input.multiple = true;
+      
+      input.onchange = (e) => {
+        const files = Array.from(e.target.files);
+        const markdownFiles = files.filter(file => file.name.endsWith('.md'));
+        
+        if (markdownFiles.length === 0) {
+          message.error('未找到Markdown文件，请选择包含Obsidian笔记的目录');
+          return;
+        }
+        
+        // 处理导入的Markdown文件
+        const lessons = [];
+        let index = 1;
+        
+        markdownFiles.forEach(file => {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const content = event.target.result;
+            lessons.push({
+              id: index,
+              title: file.name.replace('.md', ''),
+              type: 'document',
+              duration: '30分钟',
+              completed: false,
+              content: content
+            });
+            index++;
+            
+            // 当所有文件都处理完成后，创建课程
+            if (lessons.length === markdownFiles.length) {
+              const importedContent = {
+                id: Date.now(),
+                title: 'Obsidian导入课程',
+                type: 'mixed',
+                instructor: 'Obsidian',
+                duration: `${Math.ceil(lessons.length * 0.5)}小时`,
+                progress: 0,
+                category: '导入课程',
+                level: '初级',
+                description: `从Obsidian导入的课程内容，包含${lessons.length}个笔记`,
+                lessons: lessons
+              };
+              
+              // 添加到课程列表
+              setCourses(prevCourses => [...prevCourses, importedContent]);
+              setIsImportModalVisible(false);
+              message.success(`成功从Obsidian导入${lessons.length}个笔记！`);
+            }
+          };
+          reader.readAsText(file);
+        });
       };
       
-      // 添加到课程列表
-      setCourses(prevCourses => [...prevCourses, importedContent]);
-      setIsImportModalVisible(false);
+      input.click();
     } catch (error) {
-      message.error('导入Obsidian内容失败，请检查密钥是否正确');
+      message.error('导入Obsidian内容失败：' + error.message);
     }
   };
 
