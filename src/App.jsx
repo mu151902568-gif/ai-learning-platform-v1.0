@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { Layout, Menu, Button, Badge, Drawer, List, Avatar, Space } from 'antd';
-import { BookOutlined, FileTextOutlined, UserOutlined, MenuOutlined, MessageOutlined } from '@ant-design/icons';
+import { BookOutlined, FileTextOutlined, UserOutlined, MenuOutlined, RobotOutlined, MessageOutlined } from '@ant-design/icons';
 import CoursePage from './pages/CoursePage';
 import ExamPage from './pages/ExamPage';
+import AILearningPage from './pages/AILearningPage';
 import './App.css';
 
 const { Header, Sider, Content } = Layout;
@@ -20,6 +21,7 @@ function App() {
 
   const menuItems = [
     { key: 'courses', icon: <BookOutlined />, label: '课程学习', path: '/courses' },
+    { key: 'ai-learning', icon: <RobotOutlined />, label: 'AI 智能学习', path: '/ai-learning' },
     { key: 'exams', icon: <FileTextOutlined />, label: '考试测验', path: '/exams' },
   ];
 
@@ -73,10 +75,11 @@ function App() {
           
           <Content className="content">
             <Routes>
-              <Route path="/" element={<Navigate to="/courses" replace />} />
+              <Route path="/" element={<Navigate to="/ai-learning" replace />} />
               <Route path="/courses" element={<CoursePage />} />
+              <Route path="/ai-learning" element={<AILearningPage />} />
               <Route path="/exams" element={<ExamPage />} />
-              <Route path="*" element={<Navigate to="/courses" replace />} />
+              <Route path="*" element={<Navigate to="/ai-learning" replace />} />
             </Routes>
           </Content>
         </Layout>
