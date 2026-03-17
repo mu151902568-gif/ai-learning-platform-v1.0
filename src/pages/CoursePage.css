@@ -1,0 +1,185 @@
+.course-page {
+  padding: 24px 0;
+}
+
+.course-page h1 {
+  margin-bottom: 32px;
+  color: #333;
+}
+
+.course-tabs {
+  margin-bottom: 24px;
+}
+
+.course-list {
+  margin-bottom: 32px;
+}
+
+.course-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.course-card.selected {
+  border: 2px solid #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.course-card h3 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.instructor {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.duration {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.course-footer {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.course-detail {
+  margin-top: 32px;
+}
+
+.detail-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
+.course-info {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.course-info p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.lessons-list {
+  margin-top: 16px;
+}
+
+.lesson-card {
+  margin-bottom: 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.lesson-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.lesson-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.lesson-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lesson-icon {
+  font-size: 18px;
+}
+
+.lesson-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.lesson-duration {
+  font-size: 12px;
+  color: #999;
+}
+
+.lesson-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .course-page {
+    padding: 16px 0;
+  }
+  
+  .course-page h1 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .course-card h3 {
+    font-size: 14px;
+  }
+  
+  .instructor,
+  .duration {
+    font-size: 12px;
+  }
+  
+  .lesson-title {
+    font-size: 12px;
+  }
+  
+  .lesson-duration {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .course-page h1 {
+    font-size: 18px;
+  }
+  
+  .course-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .lesson-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .lesson-actions {
+    width: 100%;
+  }
+  
+  .lesson-actions Button {
+    width: 100%;
+  }
+}

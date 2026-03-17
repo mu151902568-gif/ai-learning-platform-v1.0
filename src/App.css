@@ -1,0 +1,196 @@
+/* 全局样式 */
+:root {
+  --primary-color: #1890ff;
+  --secondary-color: #f0f2f5;
+  --text-color: #333;
+  --border-color: #e8e8e8;
+  --success-color: #52c41a;
+  --warning-color: #faad14;
+  --error-color: #f5222d;
+}
+
+/* 布局样式 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-name {
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.sidebar {
+  background: white;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.content {
+  padding: 24px;
+  background: var(--secondary-color);
+  min-height: calc(100vh - 64px);
+}
+
+/* 移动端样式 */
+.mobile-menu-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
+  
+  .header-right .user-info {
+    display: none;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+}
+
+/* 卡片样式 */
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: var(--text-color);
+}
+
+/* 课程卡片 */
+.course-card {
+  transition: all 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* 进度条 */
+.progress-container {
+  margin: 16px 0;
+}
+
+/* 按钮样式 */
+.primary-button {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.primary-button:hover {
+  background: #40a9ff;
+  border-color: #40a9ff;
+}
+
+/* 表单样式 */
+.form-item {
+  margin-bottom: 16px;
+}
+
+/* 列表样式 */
+.list-item {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.list-item:hover {
+  background: var(--secondary-color);
+}
+
+/* 聊天界面 */
+.chat-container {
+  height: 500px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.chat-message {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.chat-message.ai {
+  flex-direction: row-reverse;
+}
+
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.chat-content {
+  max-width: 70%;
+  padding: 12px;
+  border-radius: 16px;
+  background: var(--secondary-color);
+}
+
+.chat-message.ai .chat-content {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* 响应式布局 */
+@media (max-width: 576px) {
+  .header {
+    padding: 0 16px;
+  }
+  
+  .logo {
+    font-size: 16px;
+  }
+  
+  .content {
+    padding: 12px;
+  }
+  
+  .card {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .card-title {
+    font-size: 16px;
+  }
+}
