@@ -128,7 +128,7 @@ const AIlearningPage = () => {
                 <List.Item.Meta
                   avatar={<BookOutlined />}
                   title={item.title}
-                  description={item.content.substring(0, 30)}...
+                  description={item.content.substring(0, 30) + '...'}
                 />
               </List.Item>
             )}
