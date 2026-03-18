@@ -4,6 +4,7 @@ import { Layout, Menu, Button, Badge, Drawer, List, Avatar, Space } from 'antd';
 import { BookOutlined, FileTextOutlined, UserOutlined, MenuOutlined, MessageOutlined } from '@ant-design/icons';
 import CoursePage from './pages/CoursePage';
 import ExamPage from './pages/ExamPage';
+import AIlearningPage from './pages/AIlearningPage';
 import './App.css';
 
 const { Header, Sider, Content } = Layout;
@@ -21,6 +22,7 @@ function App() {
   const menuItems = [
     { key: 'courses', icon: <BookOutlined />, label: '课程学习', path: '/courses' },
     { key: 'exams', icon: <FileTextOutlined />, label: '考试测验', path: '/exams' },
+    { key: 'ai-learning', icon: <MessageOutlined />, label: 'AI学习', path: '/ai-learning' },
   ];
 
   return (
@@ -76,6 +78,7 @@ function App() {
               <Route path="/" element={<Navigate to="/courses" replace />} />
               <Route path="/courses" element={<CoursePage />} />
               <Route path="/exams" element={<ExamPage />} />
+              <Route path="/ai-learning" element={<AIlearningPage />} />
               <Route path="*" element={<Navigate to="/courses" replace />} />
             </Routes>
           </Content>

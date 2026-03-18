@@ -205,6 +205,15 @@ const CoursePage = () => {
     }
   };
 
+  // 删除课程
+  const handleDeleteCourse = (courseId) => {
+    setCourses(prevCourses => prevCourses.filter(course => course.id !== courseId));
+    if (selectedCourse && selectedCourse.id === courseId) {
+      setSelectedCourse(null);
+    }
+    message.success('课程已删除');
+  };
+
   // 导入Obsidian内容
   const handleImportObsidian = () => {
     try {
@@ -344,6 +353,17 @@ const CoursePage = () => {
               <div className="course-footer">
                 <Tag>{course.category}</Tag>
                 <Tag color="blue">{course.level}</Tag>
+                <Button 
+                  type="text" 
+                  danger 
+                  size="small" 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteCourse(course.id);
+                  }}
+                >
+                  删除
+                </Button>
               </div>
             </Card>
           </Col>
